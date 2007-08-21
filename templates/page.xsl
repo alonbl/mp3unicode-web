@@ -16,6 +16,9 @@
             <xsl:apply-templates select="pages/page">
               <xsl:sort select="@order"/>
             </xsl:apply-templates>
+            <div style="padding-top: 15px; text-align: center; padding-right: 15px">
+              <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=203200&amp;type=1" width="88" height="31" border="0" alt="SourceForge.net Logo" /></a>
+            </div>
           </div>
         </td>
         <td valign="top">
@@ -33,26 +36,17 @@
 </xsl:template>
 
 <xsl:template match="meta" mode="snode">
-  <p style="white-space: nowrap">
+  <div style="white-space: nowrap; margin-bottom: 10px">
     <a href="{file}"><xsl:value-of select="name"/></a>
     <span> $ </span>
-  </p>
+  </div>
 </xsl:template>
 
 <xsl:template match="meta" mode="node">
-  <p style="white-space: nowrap">
+  <div style="white-space: nowrap; margin-bottom: 10px">
     <a href="{file}"><xsl:value-of select="name"/></a>
     <span style="visibility: hidden"> $ </span>
-  </p>
+  </div>
 </xsl:template>
-  
-<!--<xsl:template match="page">
-  <p>
-    <a href="{meta/file}"><xsl:value-of select="meta/name"/></a>
-    <xsl:apply-templates select="meta[file=$file]"/>
-  </p>
-</xsl:template>
-
-<xsl:template match="meta"> $ </xsl:template>-->
 
 </xsl:stylesheet>
