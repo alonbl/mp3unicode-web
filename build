@@ -1,0 +1,49 @@
+#!/bin/bash
+
+cd ../..
+root=$PWD
+meta=$root/mp3unicode-meta/trunk
+web=$root/mp3unicode-web2/trunk
+temp=$root/temp
+#htdocs=
+
+# 0. Cleaning temp directory
+rm -rf $temp
+mkdir $temp $temp/pages
+
+# 1. man2xhtml
+
+man2html $meta/mp3unicode.1 | tail -n +3 | sed "s/&nbsp;//g" | xmllint --dropdtd --html --xmlout --output $meta/manpage.xhtml -
+
+
+# 2. generating xml pages
+cd $web/templates/pages
+for xslpage in *.xsl
+do
+  xmlpage=`echo $xslpage | sed s/xsl$/xml/`
+  xsltproc --xinclude -o $temp/pages/$xmlpage $xslpage $meta/project.xml
+done
+
+# 3. generating site.xml with links to all the pages
+cd $temp
+echo '<?xml version="1.0"?>' > site.xml
+echo '<pages xmlns:xi="http://www.w3.org/2001/XInclude">' >> site.xml
+for page in pages/*.xml
+do
+  echo '<xi:include href="'$page'"/>' >> site.xml
+done
+echo '</pages>' >> site.xml
+
+# 4. generating html pages
+cd pages
+for xmlpage in *.xml
+do
+  htmlpage=`echo $xmlpage | sed s/xml$/html/`
+  xsltproc --stringparam file $htmlpage --xinclude -o $htmlpage $web/templates/page.xsl $temp/site.xml
+done
+
+# 5. copying to htdocs
+#cp *.html $htdocs
+
+# 6. cleaning up
+rm $meta/manpage.xhtml
