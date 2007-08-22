@@ -2,7 +2,7 @@
 
 cd ../..
 root=$PWD
-meta=$root/mp3unicode-meta/trunk
+meta=$root/mp3unicode/trunk
 web=$root/mp3unicode-web2/trunk
 temp=$root/temp
 #htdocs=
