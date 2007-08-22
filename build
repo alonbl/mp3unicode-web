@@ -4,8 +4,8 @@ cd ../..
 root=$PWD
 meta=$root/mp3unicode/trunk
 web=$root/mp3unicode-web2/trunk
-temp=$root/temp
-#htdocs=
+temp=`echo $1 | sed 's_/$__'`/mp3unicode-web2
+htdocs=`echo $2 | sed 's_/$__'`
 
 # 0. Cleaning temp directory
 rm -rf $temp
@@ -42,8 +42,13 @@ do
   xsltproc --stringparam file $htmlpage --xinclude -o $htmlpage $web/templates/page.xsl $temp/site.xml
 done
 
+echo "Temporary pages are generated in $temp/"
+
 # 5. copying to htdocs
-#cp *.html $htdocs
+if [ ! -z $htdocs ]; then
+  cp *.html $htdocs/
+  echo "Html pages copied to $htdocs/"
+fi
 
 # 6. cleaning up
 rm $meta/manpage.xhtml
