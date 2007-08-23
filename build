@@ -1,54 +1,30 @@
 #!/bin/bash
 
+# 1. defining variables
 cd ../..
 root=$PWD
-meta=$root/mp3unicode/trunk
+content=$root/mp3unicode/trunk
 web=$root/mp3unicode-web2/trunk
-temp=`echo $1 | sed 's_/$__'`/mp3unicode-web2
-htdocs=`echo $2 | sed 's_/$__'`
+htdocs=`echo $1 | sed 's_/$__'`
 
-# 0. Cleaning temp directory
-rm -rf $temp
-mkdir $temp $temp/pages
+if [ ! -z $htdocs ]; then
 
-# 1. man2xhtml
+# 2. man2xhtml
 
-man2html $meta/mp3unicode.1 | tail -n +3 | sed "s/&nbsp;//g" | xmllint --dropdtd --html --xmlout --output $meta/manpage.xhtml -
+man2html $content/mp3unicode.1 | tail -n +3 | sed "s/&nbsp;//g" | xmllint --dropdtd --html --xmlout --output $content/manpage.xhtml -
 
-
-# 2. generating xml pages
+# 3. generating xml pages
 cd $web/templates/pages
 for xslpage in *.xsl
 do
-  xmlpage=`echo $xslpage | sed s/xsl$/xml/`
-  xsltproc --xinclude -o $temp/pages/$xmlpage $xslpage $meta/project.xml
+  htmlpage=`echo $xslpage | sed s/xsl$/html/`
+  xsltproc --xinclude -o $htdocs/$htmlpage $xslpage $content/project.xml
 done
+echo "Html pages saved to $htdocs"
 
-# 3. generating site.xml with links to all the pages
-cd $temp
-echo '<?xml version="1.0"?>' > site.xml
-echo '<pages xmlns:xi="http://www.w3.org/2001/XInclude">' >> site.xml
-for page in pages/*.xml
-do
-  echo '<xi:include href="'$page'"/>' >> site.xml
-done
-echo '</pages>' >> site.xml
+# 4. cleaning up
+rm $content/manpage.xhtml
 
-# 4. generating html pages
-cd pages
-for xmlpage in *.xml
-do
-  htmlpage=`echo $xmlpage | sed s/xml$/html/`
-  xsltproc --stringparam file $htmlpage --xinclude -o $htmlpage $web/templates/page.xsl $temp/site.xml
-done
-
-echo "Temporary pages are generated in $temp/"
-
-# 5. copying to htdocs
-if [ ! -z $htdocs ]; then
-  cp *.html $htdocs/
-  echo "Html pages copied to $htdocs/"
+else
+echo "Specify the path to htdocs."
 fi
-
-# 6. cleaning up
-rm $meta/manpage.xhtml

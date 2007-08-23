@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<xsl:output method="xml" indent="yes"/>
-<xsl:template match="/">
-  <page order="4">
+<xsl:include href="../page.xsl"/>
+<xsl:variable name="file">changelog.html</xsl:variable>
+
+<xsl:template name="page">
+  <page>
     <meta>
       <name>ChangeLog</name>
       <file>changelog.html</file>

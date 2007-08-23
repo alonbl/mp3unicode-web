@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<pages>
+  <page file="index.html">Home</page>
+  <page file="downloads.html">Downloads</page>
+  <page file="manpage.html">Man Page</page>
+  <page file="changelog.html">ChangeLog</page>
+</pages>
