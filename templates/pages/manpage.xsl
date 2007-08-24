@@ -4,6 +4,7 @@
 <xsl:variable name="file">manpage.html</xsl:variable>
 
 <xsl:template name="page">
+  <h1>mp3unicode(1)</h1>
   <h2>NAME</h2>
   <xsl:apply-templates select="project/manpage/body/node()[preceding-sibling::h2[text()='NAME'] and following-sibling::a[@name='index']]"/>
 </xsl:template>
