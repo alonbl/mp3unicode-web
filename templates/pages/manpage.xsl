@@ -4,16 +4,8 @@
 <xsl:variable name="file">manpage.html</xsl:variable>
 
 <xsl:template name="page">
-  <page>
-    <meta>
-      <name>Man Page</name>
-      <file>manpage.html</file>
-    </meta>
-    <body>
-    <h2>NAME</h2>
-    <xsl:apply-templates select="project/manpage/body/node()[preceding-sibling::h2[text()='NAME'] and following-sibling::a[@name='index']]"/>
-    </body>
-  </page>
+  <h2>NAME</h2>
+  <xsl:apply-templates select="project/manpage/body/node()[preceding-sibling::h2[text()='NAME'] and following-sibling::a[@name='index']]"/>
 </xsl:template>
 
 <xsl:template match="hr"/>

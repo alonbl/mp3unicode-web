@@ -4,16 +4,8 @@
 <xsl:variable name="file">changelog.html</xsl:variable>
 
 <xsl:template name="page">
-  <page>
-    <meta>
-      <name>ChangeLog</name>
-      <file>changelog.html</file>
-    </meta>
-    <body>
-      <h1>ChangeLog</h1>
-      <xsl:apply-templates select="project/releases"/>
-    </body>
-  </page>
+  <h1>ChangeLog</h1>
+  <xsl:apply-templates select="project/releases"/>
 </xsl:template>
 
 <xsl:template match="release">

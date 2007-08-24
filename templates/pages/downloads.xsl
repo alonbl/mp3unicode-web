@@ -4,20 +4,12 @@
 <xsl:variable name="file">downloads.html</xsl:variable>
 
 <xsl:template name="page">
-  <page>
-    <meta>
-      <name>Downloads</name>
-      <file>downloads.html</file>
-     </meta>
-     <body>
-       <h1>Downloads</h1>
-       <h3>Latest Stable Release</h3>
-       <xsl:apply-templates select="project/releases/release[@stable='true'][1]"/>
-       
-       <h3>Latest Development Release</h3>
-       <xsl:apply-templates select="project/releases/release[1]"/>
-     </body>
-   </page>
+  <h1>Downloads</h1>
+  <h3>Latest Stable Release</h3>
+  <xsl:apply-templates select="project/releases/release[@stable='true'][1]"/>
+  
+  <h3>Latest Development Release</h3>
+  <xsl:apply-templates select="project/releases/release[1]"/>
 </xsl:template>
 
 <xsl:template match="release">
