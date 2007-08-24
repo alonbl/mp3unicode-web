@@ -3,5 +3,7 @@
   <page file="index.html">Home</page>
   <page file="downloads.html">Downloads</page>
   <page file="manpage.html">Man Page</page>
+  <page file="support.html">Support</page>
   <page file="changelog.html">ChangeLog</page>
+  <page file="license.html">License (GPL v2)</page>
 </pages>

@@ -14,7 +14,9 @@
         <td valign="top">
           <div style="padding-right: 15px; padding-bottom: 100px; margin-right: 15px; border-right: 2px solid">
             <xsl:apply-templates select="document('site.xml')/pages/page"/>
-            <div style="padding-top: 15px; text-align: center; padding-right: 15px">
+            <!--<div style="text-align: center"><div style="width: 50px; height: 1px; background-color: black; margin-left: auto; margin-right: auto; margin-bottom: 10px"></div></div>-->
+            <div style="margin-bottom: 10px"><a href="http://sourceforge.net/projects/mp3unicode">SF Project Page</a></div>
+            <div style="padding-top: 10px; text-align: center; padding-right: 15px">
               <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=203200&amp;type=1" width="88" height="31" border="0" alt="SourceForge.net Logo" /></a>
             </div>
           </div>
