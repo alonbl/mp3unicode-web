@@ -10,10 +10,11 @@
     <author>
       <name>Andrei Dubovik</name>
       <email>andu@inbox.ru</email>
+      <homepage link="true">http://www.yellowsite.ru</homepage>
     </author>
     <author>
       <name>Alon Bar-Lev</name>
-      <email>alon.barlev@gmail.com</email>
+      <email link="true">alon.barlev@gmail.com</email>
     </author>
   </authors>
   <xi:include href="releases.xml"/>

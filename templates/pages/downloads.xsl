@@ -5,15 +5,15 @@
 
 <xsl:template name="page">
   <h1>Downloads</h1>
-  <h3>Latest Stable Release</h3>
-  <xsl:apply-templates select="project/releases/release[@stable='true'][1]"/>
-  
-  <h3>Latest Development Release</h3>
+  <h3>Latest Release</h3>
   <xsl:apply-templates select="project/releases/release[1]"/>
+
+  <h3>SVN</h3>
+  <code>svn checkout https://mp3unicode.svn.sourceforge.net/svnroot/mp3unicode/mp3unicode/trunk mp3unicode</code>
 </xsl:template>
 
 <xsl:template match="release">
-  mp3unicode-<xsl:value-of select="version"/> (<xsl:value-of select="date"/>)
+  <p>mp3unicode-<xsl:value-of select="version"/> (<xsl:value-of select="date"/>), <a href="changelog.html">changelog</a></p>
   <ul><xsl:apply-templates select="file"/></ul>
 </xsl:template>
 
@@ -26,8 +26,6 @@
 
 <xsl:template match="file[@type='source']" mode="type">Source</xsl:template>
 <xsl:template match="file[@type='ebuild']" mode="type">Gentoo ebuild</xsl:template>
-<xsl:template match="file[@type='debian']" mode="type">Debian package</xsl:template>
-
 <xsl:template match="file[@arch]" mode="arch"> (<xsl:value-of select="@arch"/>)</xsl:template>
 <xsl:template match="*" mode="arch"/>
 
