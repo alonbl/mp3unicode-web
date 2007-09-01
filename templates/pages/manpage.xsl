@@ -11,6 +11,10 @@
 
 <xsl:template match="hr"/>
 
+<xsl:template match="a[starts-with(@href,'http')]">
+  <xsl:apply-templates/>
+</xsl:template>
+
 <xsl:template match="node()|@*">
   <xsl:copy>
     <xsl:apply-templates select="node()|@*"/>
