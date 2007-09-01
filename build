@@ -1,10 +1,8 @@
 #!/bin/bash
 
 # 1. defining variables
-cd ../..
-root=$PWD
-content=$root/mp3unicode/trunk
-web=$root/mp3unicode-web2/trunk
+content=$PWD
+web=$PWD
 htdocs=`echo $1 | sed 's_/$__'`
 
 if [ ! -z $htdocs ]; then
