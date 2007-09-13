@@ -1,37 +1,34 @@
 #!/bin/bash
 
-# 1. defining variables
-self=`echo $0 | sed 's_/build$__'`
-content=$self
-web=$self
+# 1. define variables
+
 htdocs=`echo $1 | sed 's_/$__'`
 ptrunk=`echo $2 | sed 's_/$__'`
 
-# 2. copy some files from the program trunk (since we don't want to use symbolic links)
+if [ ! -z $htdocs ]; then
+
+# 1.5. copy some files from the program trunk (since we don't want to use symbolic links)
 if [ -z $ptrunk ]; then
-ptrunk=$self/../../mp3unicode/trunk
+ptrunk=$PWD/../../mp3unicode/trunk
 fi
 
-cp $ptrunk/{mp3unicode.1,releases.xml} $self/
-
-if [ ! -z $htdocs ]; then
+cp $ptrunk/{mp3unicode.1,releases.xml} ./
 
 # 2. man2xhtml
 
-man2html $content/mp3unicode.1 | tail -n +3 | sed "s/&nbsp;//g" | xmllint --dropdtd --html --xmlout --output $content/manpage.xhtml -
+man2html mp3unicode.1 | tail -n +3 | sed "s/&nbsp;//g" | xmllint --dropdtd --html --xmlout --output manpage.xhtml -
 
 # 3. generating xml pages
-cd $web/templates/pages
-for xslpage in *.xsl
+for xslpage in templates/pages/*.xsl
 do
-  htmlpage=`echo $xslpage | sed s/xsl$/html/`
-  xsltproc --xinclude -o $htdocs/$htmlpage $xslpage $content/project.xml
+  htmlpage=`echo $xslpage | sed 's_templates/pages/\(.*\)xsl$_\1html_'`
+  xsltproc --xinclude -o $htdocs/$htmlpage $xslpage project.xml
 done
 echo "Html pages saved to $htdocs"
 
 # 4. cleaning up
-rm $content/manpage.xhtml
-rm $self/{mp3unicode.1,releases.xml}
+rm manpage.xhtml
+rm mp3unicode.1 releases.xml
 
 else
 echo "Specify the path to htdocs."
