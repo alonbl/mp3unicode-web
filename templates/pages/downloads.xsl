@@ -10,6 +10,7 @@
 
   <h3>SVN</h3>
   <code>svn checkout https://mp3unicode.svn.sourceforge.net/svnroot/mp3unicode/mp3unicode/trunk mp3unicode</code>
+  <p>You may also <a href="http://mp3unicode.svn.sourceforge.net/viewvc/mp3unicode/">browse SVN</a> online.</p>
 </xsl:template>
 
 <xsl:template match="release">
@@ -25,7 +26,7 @@
 </xsl:template>
 
 <xsl:template match="file[@type='source']" mode="type">Source</xsl:template>
-<xsl:template match="file[@type='ebuild']" mode="type">Gentoo ebuild</xsl:template>
+<xsl:template match="file[@type='ebuild']" mode="type">Gentoo (media-sound/mp3unicode)</xsl:template>
 <xsl:template match="file[@arch]" mode="arch"> (<xsl:value-of select="@arch"/>)</xsl:template>
 <xsl:template match="*" mode="arch"/>
 
