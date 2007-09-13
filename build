@@ -9,7 +9,7 @@ if [ ! -z $htdocs ]; then
 
 # 1.5. copy some files from the program trunk (since we don't want to use symbolic links)
 if [ -z $ptrunk ]; then
-ptrunk=$PWD/../../mp3unicode/trunk
+ptrunk="../../mp3unicode/trunk"
 fi
 
 cp $ptrunk/{mp3unicode.1,releases.xml} ./
