@@ -1,35 +1,30 @@
 #!/bin/bash
 
-# 1. define variables
+die() {
+	echo "$1" >&2
+	exit 1
+}
 
-htdocs=`echo $1 | sed 's_/$__'`
-ptrunk=`echo $2 | sed 's_/$__'`
+SOURCE="$1"
+DEST="$2"
 
-if [ ! -z $htdocs ]; then
+[ -z "${DEST}" ] && die "usage"
 
-# 1.5. copy some files from the program trunk (since we don't want to use symbolic links)
-if [ -z $ptrunk ]; then
-ptrunk="../../mp3unicode/trunk"
-fi
+cd "$(dirname $0)"
 
-cp $ptrunk/{mp3unicode.1,releases.xml} ./
+cp "${SOURCE}/"{mp3unicode.1,releases.xml} ./  || die "copy"
 
 # 2. man2xhtml
 
-man2html mp3unicode.1 | tail -n +3 | sed "s/&nbsp;//g" | xmllint --dropdtd --html --xmlout --output manpage.xhtml -
+man2html mp3unicode.1 | tail -n +3 | sed "s/&nbsp;//g" | xmllint --dropdtd --html --xmlout --output manpage.xhtml - || die "man2html"
 
 # 3. generating xml pages
-for xslpage in templates/pages/*.xsl
-do
+for xslpage in templates/pages/*.xsl; do
   htmlpage=`echo $xslpage | sed 's_templates/pages/\(.*\)xsl$_\1html_'`
-  xsltproc --xinclude -o $htdocs/$htmlpage $xslpage project.xml
+  xsltproc --xinclude -o "${DEST}/$htmlpage" $xslpage project.xml || die "xsltproc"
 done
-echo "Html pages saved to $htdocs"
 
 # 4. cleaning up
 rm manpage.xhtml
 rm mp3unicode.1 releases.xml
 
-else
-echo "Specify the path to htdocs."
-fi
