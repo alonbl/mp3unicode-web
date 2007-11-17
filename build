@@ -24,6 +24,10 @@ for xslpage in templates/pages/*.xsl; do
   xsltproc --xinclude -o "${DEST}/$htmlpage" $xslpage project.xml || die "xsltproc"
 done
 
+for f in *.html; do
+	cp "$f" "${DEST}"
+done
+
 # 4. cleaning up
 rm manpage.xhtml
 rm mp3unicode.1 releases.xml
