@@ -27,6 +27,7 @@ done
 for f in *.html; do
 	cp "$f" "${DEST}"
 done
+cp sitemap.xml "${DEST}"
 
 # 4. cleaning up
 rm manpage.xhtml
