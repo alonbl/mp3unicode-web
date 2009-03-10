@@ -17,7 +17,7 @@
             <!--<div style="text-align: center"><div style="width: 50px; height: 1px; background-color: black; margin-left: auto; margin-right: auto; margin-bottom: 10px"></div></div>-->
             <div style="margin-bottom: 10px"><a href="http://sourceforge.net/projects/mp3unicode">SF Project Page</a></div>
             <div style="padding-top: 10px; text-align: center; padding-right: 15px">
-              <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=203200&amp;type=1" width="88" height="31" border="0" alt="SourceForge.net Logo" /></a>
+	      <a href="http://sourceforge.net/projects/mp3unicode"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=203200&type=10" width="80" height="15" border="0" alt="Get mp3unicode at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a>
             </div>
           </div>
         </td>
