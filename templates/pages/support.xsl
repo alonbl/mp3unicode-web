@@ -8,7 +8,7 @@
   <p>The following channels are available (sourceforge.net):</p>
   <ul>
     <li>Mailing list <a href="https://lists.sourceforge.net/lists/listinfo/mp3unicode-users">mp3unicode-users</a></li>
-    <li><a href="https://sourceforge.net/tracker/?group_id=203200">Bug Database</a></li>
+    <li><a href="https://github.com/alonbl/mp3unicode/issues">Bug Database</a></li>
   </ul>
 </xsl:template>
 

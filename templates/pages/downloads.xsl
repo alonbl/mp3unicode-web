@@ -9,8 +9,8 @@
   <xsl:apply-templates select="project/releases/release[1]"/>
 
   <h3>SVN</h3>
-  <code>svn checkout https://mp3unicode.svn.sourceforge.net/svnroot/mp3unicode/mp3unicode/trunk mp3unicode</code>
-  <p>You may also <a href="http://mp3unicode.svn.sourceforge.net/viewvc/mp3unicode/">browse SVN</a> online.</p>
+  <code>git clone https://github.com/alonbl/mp3unicode</code>
+  <p>You may also <a href="https://github.com/alonbl/mp3unicode">browse GIT</a> online.</p>
 </xsl:template>
 
 <xsl:template match="release">
